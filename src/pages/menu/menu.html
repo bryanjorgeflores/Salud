@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Inicio</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-content class="card-background-page">
+
+    <ion-card>
+      <img (click)="goToNuevoEmbarazo()" src="assets/img/img1.jpg"/>
+      <div class="card-title">Embarazo</div>
+      <div class="card-subtitle">Control de Embarazo</div>
+    </ion-card>
+  
+    <ion-card>
+      <img src="assets/img/img.jpg"/>
+      <div class="card-title">Vacunas</div>
+      <div class="card-subtitle">Control de Vacunas</div>
+    </ion-card>
+  
+    <ion-card>
+      <img src="assets/img/img2.jpg"/>
+      <div class="card-title">Lista de Embarazadas</div>
+      <div class="card-subtitle">Historial de Embarazadas</div>
+    </ion-card>
+  
+    <ion-card>
+      <img src="assets/img/logo.png"/>
+      <div class="card-title">Lista de Vacunados</div>
+      <div class="card-subtitle">Historial de Vacunados</div>
+    </ion-card>
+</ion-content>

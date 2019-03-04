@@ -1,0 +1,45 @@
+<!--
+  Generated template for the MenuPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-title>
+      <p class="pform">Ingreso</p>
+    </ion-title>
+  </ion-navbar>
+
+  
+</ion-header>
+
+<ion-content>
+
+      <ion-list >
+          <ion-item>
+            <p item-start >
+              <img src="assets/imgs/user.png">
+            </p>
+            <ion-label floating color="dark">Nombre de Usuario</ion-label>
+            <ion-input type="text" ></ion-input>
+          </ion-item>
+        <ion-item>
+          <p item-start >
+              <img src="assets/imgs/lock.png">
+          </p>
+          <ion-label floating color="dark">Contraseña</ion-label>
+          <ion-input type="password"></ion-input>
+        </ion-item>
+      </ion-list>
+  <div padding>
+    <button (click)="goToMenu()" ion-button color="secondary" block>Ingresar</button>
+  </div>
+
+  <div padding>
+    <a href="">Se te olvidó la contraseña?</a>
+    <p></p>
+    <a href="">Eres nuevo? Registrate</a>
+  </div>
+</ion-content>
