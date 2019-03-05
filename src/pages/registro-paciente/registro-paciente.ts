@@ -19,7 +19,7 @@ import { OpenNamesPage } from '../open-names/open-names';
   templateUrl: 'registro-paciente.html',
 })
 export class RegistroPacientePage {
-  url: string = "http://aplicaciones007.jne.gob.pe/srop_publico/consulta/afiliado/GetNombresCiudadano?DNI=";
+  url: string = "https://dni-salud.herokuapp.com/";
   numDni: string = "";
   nombres: string = "";
   dni: string = "";
