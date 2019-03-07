@@ -1,0 +1,88 @@
+<!--
+  Generated template for the ListadoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-title>
+        <p class="pform">Listado</p>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-grid class="background" responsive-sm>
+            <ion-row>
+                <ion-col width-33>
+                    <img class="ion-img" src="assets/imgs/baby.png">
+                </ion-col>
+                
+                <ion-col width-33>
+                  <p class="pform">VACUNAS</p>
+                  <label>
+                    <button ion-button class="button-not" color="third">2</button>
+                    <button ion-button class="button-not" color="danger">3</button>
+                  </label> 
+              </ion-col>
+                <ion-col width-33>
+                    <button (click)="goToRegistrar()" class="button-add" ion-button>Agregar</button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-grid class="background" responsive-sm>
+            <ion-row>
+                <ion-col width-33>
+                    <img class="ion-img" src="assets/imgs/pregnant.png">
+                </ion-col>
+                
+                <ion-col width-33>
+                  <p class="pform">GESTANTE</p>
+                  <label>
+                    <button ion-button class="button-not" color="third">2</button>
+                    <button ion-button class="button-not" color="danger">3</button>
+                  </label> 
+              </ion-col>
+                <ion-col width-33>
+                    <button (click)="goToRegistrar()" class="button-add" ion-button ion-button color="five">Agregar</button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-grid class="background" responsive-sm>
+            <ion-row>
+                <ion-col width-33>
+                    <img class="ion-img" src="assets/imgs/boy.png">
+                </ion-col>
+                
+                <ion-col width-33>
+                  <p class="pform">CRID</p>
+                  <label>
+                    <button ion-button class="button-not" color="third">2</button>
+                    <button ion-button class="button-not" color="danger">3</button>
+                  </label> 
+              </ion-col>
+                <ion-col width-33>
+                    <button (click)="goToRegistrar()" class="button-add" ion-button color="secondary">Agregar</button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-grid class="background" responsive-sm>
+            <ion-row>
+                <ion-col col-4>
+                    <img class="ion-img" src="assets/imgs/files.png">
+                </ion-col>
+                
+                <ion-col col-8>
+                  <p class="pform">ARCHIVOS</p>
+                  <label>
+                    <button (click)="goToArchivos()" ion-button class="button-files" color="danger">Ver Archivos</button>
+                  </label> 
+              </ion-col>
+            </ion-row>
+        </ion-grid>
+      </ion-list>
+</ion-content>
