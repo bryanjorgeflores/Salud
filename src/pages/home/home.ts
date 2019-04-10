@@ -23,16 +23,20 @@ export class HomePage {
   }
   submit() {
     console.log(this.data);
-    var date = new Date(this.data.date+" "+this.data.time);
+    var date = Number(new Date(this.data.date+" "+this.data.time));
+    
     console.log(date);
     this.localNotifications.requestPermission().then((permission) => {
       this.localNotifications.schedule({
          id: 1,
-         text: 'Pacientes pendientes',
+         title:'Pacientes pendientes',
+         text: 'Haga click aqui',
          at: date,
          every: 'minute',
-         led: 'FF0000',
-         sound: this.setSound(),
+         led: 'e16b5a',
+         icon: 'res://icon',
+         smallIcon: 'res://smallicon',
+         sound: this.setSound()
       });
       let alert = this.alertCtrl.create({
         title: 'Felicidades!',

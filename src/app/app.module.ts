@@ -30,6 +30,8 @@ import { RemoteServiceProvider } from '../providers/remote-service/remote-servic
 import { OpenNamesPage } from '../pages/open-names/open-names';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { PhonegapLocalNotification } from '@ionic-native/phonegap-local-notification';
+import { VacunasPage } from '../pages/vacunas/vacunas';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/';
 
 
 
@@ -54,7 +56,8 @@ import { PhonegapLocalNotification } from '@ionic-native/phonegap-local-notifica
     CitaPage2Page,
     CitaPage3Page,
     DetalleCitaPage,
-    OpenNamesPage
+    OpenNamesPage,
+    VacunasPage
   ],
   imports: [
     BrowserModule,
@@ -84,7 +87,8 @@ import { PhonegapLocalNotification } from '@ionic-native/phonegap-local-notifica
     CitaPage2Page,
     CitaPage3Page,
     DetalleCitaPage,
-    OpenNamesPage
+    OpenNamesPage,
+    VacunasPage
   ],
   providers: [
     StatusBar,
@@ -93,7 +97,8 @@ import { PhonegapLocalNotification } from '@ionic-native/phonegap-local-notifica
     RemoteServiceProvider,
     HttpClientModule,
     PhonegapLocalNotification,
-    LocalNotifications
+    LocalNotifications,
+    ScreenOrientation
   ]
 })
 export class AppModule {}

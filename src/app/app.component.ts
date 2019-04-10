@@ -11,6 +11,7 @@ import { Page1Page } from '../pages/page1/page1';
 import { RegistroPacientePage } from '../pages/registro-paciente/registro-paciente';
 import { HerramientasPage } from '../pages/herramientas/herramientas';
 import { CitasPage } from '../pages/citas/citas';
+import { VacunasPage } from '../pages/vacunas/vacunas';
 
 @Component({
   templateUrl: 'app.html'
@@ -34,7 +35,8 @@ export class MyApp {
       { title: 'Notificaciones', component: NotificacionPage },
       { title: 'Registrar Paciente', component: RegistroPacientePage },
       { title: 'Archivos', component: HerramientasPage },
-      { title: 'Citas', component: CitasPage }
+      { title: 'Citas', component: CitasPage },
+      { title: 'Vacuna', component: VacunasPage }
     ];
 
   }
@@ -43,7 +45,7 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
+      this.statusBar.overlaysWebView(true);
       this.splashScreen.hide();
     });
   }
