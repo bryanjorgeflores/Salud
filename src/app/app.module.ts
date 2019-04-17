@@ -1,13 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http'; 
+import { HttpModule } from '@angular/http'; 
+
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { LocalNotifications } from '@ionic-native/local-notifications';
+import { PhonegapLocalNotification } from '@ionic-native/phonegap-local-notification';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/';
+
+import { HomePage } from '../pages/home/home';
+import { ListPage } from '../pages/list/list';
 import { MenuPage } from '../pages/menu/menu';
 import { NuevoEmbarazoPage } from '../pages/nuevo-embarazo/nuevo-embarazo';
 import { HerramientasPage } from '../pages/herramientas/herramientas';
@@ -24,14 +32,20 @@ import { CitaPage1Page } from '../pages/cita-page1/cita-page1';
 import { CitaPage2Page } from '../pages/cita-page2/cita-page2';
 import { CitaPage3Page } from '../pages/cita-page3/cita-page3';
 import { DetalleCitaPage } from '../pages/detalle-cita/detalle-cita';
-import { HttpModule } from '@angular/http'; 
-import { HttpClientModule } from '@angular/common/http'; 
-import { RemoteServiceProvider } from '../providers/remote-service/remote-service';
 import { OpenNamesPage } from '../pages/open-names/open-names';
-import { LocalNotifications } from '@ionic-native/local-notifications';
-import { PhonegapLocalNotification } from '@ionic-native/phonegap-local-notification';
 import { VacunasPage } from '../pages/vacunas/vacunas';
-import { ScreenOrientation } from '@ionic-native/screen-orientation/';
+
+import { RemoteServiceProvider } from '../providers/remote-service/remote-service';
+
+import { GetDataService } from '../services/getdata.service';
+import { PutDataService } from '../services/putdata.service';
+import { PostDataService } from '../services/postdata.service';
+
+import { FilterData } from '../personalized/filter.data.personalized';
+import { ValueGlobal } from '../personalized/global.personalized';
+import { AlertPersonalized } from '../personalized/alert.personalized';
+import { OrientationPersonalized } from '../personalized/orientation.personalized';
+import { LoginPage } from '../pages/login/login';
 
 
 
@@ -57,14 +71,16 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/';
     CitaPage3Page,
     DetalleCitaPage,
     OpenNamesPage,
-    VacunasPage
+    VacunasPage,
+    LoginPage,
+
   ],
   imports: [
     BrowserModule,
     HttpModule,
     HttpClientModule,
     IonicImageViewerModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -88,7 +104,9 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/';
     CitaPage3Page,
     DetalleCitaPage,
     OpenNamesPage,
-    VacunasPage
+    VacunasPage,
+    LoginPage,
+    
   ],
   providers: [
     StatusBar,
@@ -98,7 +116,15 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/';
     HttpClientModule,
     PhonegapLocalNotification,
     LocalNotifications,
-    ScreenOrientation
+    ScreenOrientation,
+    AlertPersonalized,
+    FilterData,
+    ValueGlobal,
+    GetDataService,
+    PostDataService,
+    PutDataService,
+    OrientationPersonalized,
+
   ]
 })
 export class AppModule {}

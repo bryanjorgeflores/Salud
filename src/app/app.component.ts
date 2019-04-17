@@ -12,6 +12,7 @@ import { RegistroPacientePage } from '../pages/registro-paciente/registro-pacien
 import { HerramientasPage } from '../pages/herramientas/herramientas';
 import { CitasPage } from '../pages/citas/citas';
 import { VacunasPage } from '../pages/vacunas/vacunas';
+import { LoginPage } from '../pages/login/login';
 
 @Component({
   templateUrl: 'app.html'
@@ -30,6 +31,7 @@ export class MyApp {
     this.pages = [
       
       { title: 'Login', component: HomePage },
+      { title: 'Login', component: LoginPage },
       { title: 'Listado', component: ListadoPage },
       { title: 'Perfil', component: DatosPage },
       { title: 'Notificaciones', component: NotificacionPage },

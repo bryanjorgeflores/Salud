@@ -1,7 +1,16 @@
 page-datos {
-    .pform{
-        font-style:serif;
-        position: center;
-        text-align: center;
-    }
+  .pform {
+    font-style:serif;
+    position: center;
+    text-align: center;
+  }
+  .danger {
+    color: red;
+  }
+  .success {
+    color: green;
+  }
+  .initial {
+    white-space: initial;
+  }
 }
