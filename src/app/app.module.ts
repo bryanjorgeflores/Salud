@@ -46,6 +46,15 @@ import { ValueGlobal } from '../personalized/global.personalized';
 import { AlertPersonalized } from '../personalized/alert.personalized';
 import { OrientationPersonalized } from '../personalized/orientation.personalized';
 import { LoginPage } from '../pages/login/login';
+import { PacientesPage } from '../pages/pacientes/pacientes';
+import { PersonalPage } from '../pages/pacientes/personal/personal';
+import { EsperaPage } from '../pages/pacientes/espera/espera';
+import { RetrasoPage } from '../pages/pacientes/retraso/retraso';
+import { GeneralPage } from '../pages/pacientes/general/general';
+import { ProximoPage } from '../pages/citas/proximo/proximo';
+import { AnteriorPage } from '../pages/citas/anterior/anterior';
+import { InformePage } from '../pages/citas/informe/informe';
+import { PosteriorPage } from '../pages/citas/posterior/posterior';
 
 
 
@@ -66,6 +75,10 @@ import { LoginPage } from '../pages/login/login';
     Page4Page,
     RegistroPacientePage,
     CitasPage,
+    ProximoPage,
+    PosteriorPage,
+    AnteriorPage,
+    InformePage,
     CitaPage1Page,
     CitaPage2Page,
     CitaPage3Page,
@@ -73,6 +86,11 @@ import { LoginPage } from '../pages/login/login';
     OpenNamesPage,
     VacunasPage,
     LoginPage,
+    PacientesPage,
+    PersonalPage,
+    EsperaPage,
+    RetrasoPage,
+    GeneralPage,
 
   ],
   imports: [
@@ -100,6 +118,10 @@ import { LoginPage } from '../pages/login/login';
     Page4Page,
     RegistroPacientePage,
     CitasPage,
+    ProximoPage,
+    PosteriorPage,
+    AnteriorPage,
+    InformePage,
     CitaPage1Page,
     CitaPage2Page,
     CitaPage3Page,
@@ -107,6 +129,11 @@ import { LoginPage } from '../pages/login/login';
     OpenNamesPage,
     VacunasPage,
     LoginPage,
+    PacientesPage,
+    PersonalPage,
+    EsperaPage,
+    RetrasoPage,
+    GeneralPage,
     
   ],
   providers: [

@@ -4,7 +4,6 @@ import { Cita } from "../interfaces/models/cita.model";
 import { AlertPersonalized } from "./alert.personalized";
 import { GetDataService } from "../services/getdata.service";
 import { FilterData } from "./filter.data.personalized";
-import { NavController } from "ionic-angular";
 
 @Injectable()
 
@@ -42,14 +41,13 @@ export class ValueGlobal {
   async getPacientesBySucursalAndType(idSucursal: string, tipo: string) {    
     this.getDataService
       .getPacientesBySucursalAndType(idSucursal, tipo).subscribe(
-        (pacientes: Array<any>) => {
+        (pacientes: Array<Paciente>) => {
           let idDoctor = localStorage.getItem('iddoctor');
 
           this.pacientes = pacientes;
           this.pacientesPersonalOrden = this.filterData.getPacientesPersonalOrden(pacientes, idDoctor);
           this.pacientesEsperaOrden = this.filterData.getPacientesEsperaOrden(pacientes);
           this.pacientesRetrasoOrden = this.filterData.getPacientesRetrasoOrden(pacientes);
-
         }, 
         (error) => {
           console.error(error);

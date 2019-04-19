@@ -12,17 +12,20 @@
       </ion-title>
     </ion-navbar>
   
-    
-  </ion-header>
-  <ion-content>
-      <ion-tabs> 
-          <ion-tab [root]="tab1" tabIcon="home" tabTitle="Hoy">     
-          </ion-tab>
-          <ion-tab [root]="tab2" tabIcon="contacts" tabTitle="Proximas"> 
-          </ion-tab>
-          <ion-tab [root]="tab3" tabIcon="cog" tabTitle="Retrasadas"></ion-tab>
-          </ion-tabs>
-  </ion-content>
+</ion-header>
+
+<ion-content>
+  <ion-tabs> 
+    <ion-tab [root]="proximo" tabIcon="today" tabTitle="Actual">     
+    </ion-tab>
+    <ion-tab [root]="posterior" tabIcon="alarm" tabTitle="Futuros"> 
+    </ion-tab>
+    <ion-tab [root]="anterior" tabIcon="attach" tabTitle="Pasados">
+    </ion-tab>
+    <ion-tab [root]="informe" tabIcon="calendar" tabTitle="General">
+    </ion-tab>
+  </ion-tabs>
+</ion-content>
       
     
 

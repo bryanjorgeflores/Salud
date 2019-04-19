@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { CitaPage1Page } from '../cita-page1/cita-page1';
-import { CitaPage2Page } from '../cita-page2/cita-page2';
-import { CitaPage3Page } from '../cita-page3/cita-page3';
+
+import { Page } from 'ionic-angular/umd/navigation/nav-util';
+import { ProximoPage } from './proximo/proximo';
+import { PosteriorPage } from './posterior/posterior';
+import { AnteriorPage } from './anterior/anterior';
+import { InformePage } from './informe/informe';
 
 /**
  * Generated class for the CitasPage page.
@@ -17,11 +20,17 @@ import { CitaPage3Page } from '../cita-page3/cita-page3';
   templateUrl: 'citas.html',
 })
 export class CitasPage {
-  tab1=CitaPage1Page;
-  tab2=CitaPage2Page;
-  tab3=CitaPage3Page;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  rootPage: Page = CitasPage;
+  proximo: Page = ProximoPage;
+  posterior: Page = PosteriorPage;
+  anterior: Page = AnteriorPage;
+  informe: Page = InformePage;
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    
+    ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CitasPage');

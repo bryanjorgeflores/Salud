@@ -14,6 +14,7 @@ import { CitasPage } from '../pages/citas/citas';
 import { VacunasPage } from '../pages/vacunas/vacunas';
 import { LoginPage } from '../pages/login/login';
 import { ListPage } from '../pages/list/list';
+import { PacientesPage } from '../pages/pacientes/pacientes';
 
 @Component({
   templateUrl: 'app.html'
@@ -21,7 +22,7 @@ import { ListPage } from '../pages/list/list';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = ListPage;
+  rootPage: any = ListadoPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -31,7 +32,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       
-      { title: 'Login', component: HomePage },
+      { title: 'NotificacionesProbar', component: HomePage },
       { title: 'Login', component: LoginPage },
       { title: 'Listado', component: ListadoPage },
       { title: 'Home', component: ListPage }, 
@@ -40,7 +41,10 @@ export class MyApp {
       { title: 'Registrar Paciente', component: RegistroPacientePage },
       { title: 'Archivos', component: HerramientasPage },
       { title: 'Citas', component: CitasPage },
-      { title: 'Vacuna', component: VacunasPage }
+      { title: 'Vacuna', component: VacunasPage },
+      { title: 'Pacientes', component: PacientesPage },
+
+
     ];
 
   }

@@ -1,0 +1,52 @@
+<!--
+  Generated template for the EsperaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-title>
+      <p class="pform">Pacientes Espera</p>
+    </ion-title>
+  </ion-navbar>
+  <ion-searchbar></ion-searchbar>
+  
+</ion-header>
+  
+  
+<ion-content padding>
+  <ion-list>
+    <ion-item-sliding
+      class="item_paciente"
+      *ngFor="let paciente of pacientesEsperaOrden; let index = index;">
+
+      <ion-item
+        color="{{(paciente.citaproxima-fechaHoy >= 43200000)? 'success' : 'warning'}}"
+        (click)="goToCitas(paciente)">
+
+        <ion-label text-wrap> 
+          <p ion-text text-left tappable color="dark"> 
+            {{paciente.nombres}}          
+          </p>
+          <p ion-text text-right tappable color="danger">
+            {{(paciente.citaproxima - fechaHoy)/86400000 | number:'1.0-0'}} días faltantes
+          </p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-options side="right">
+        <button ion-button color="secondary">
+          <a class="link_llamar" href="tel:{{paciente.celular}}">
+            <ion-icon name="call"></ion-icon>
+            <br/>
+            Llamar
+          </a>
+        </button>
+      </ion-item-options>
+
+    </ion-item-sliding>
+
+  </ion-list>
+</ion-content>

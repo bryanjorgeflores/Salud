@@ -7,6 +7,7 @@ import { GetDataService } from '../../services/getdata.service';
 import { AlertPersonalized } from '../../personalized/alert.personalized';
 import { OrientationPersonalized } from '../../personalized/orientation.personalized';
 import { ValueGlobal } from '../../personalized/global.personalized';
+import { PacientesPage } from '../pacientes/pacientes';
 
 
 @Component({
@@ -33,6 +34,8 @@ export class ListPage {
     }
 
     this.orientationPersonalized.orientationPortrait();
+
+    this.idSucursal = localStorage.getItem('idsucursal');
   }
 
   goToPacientes(tipoPaciente: string) {
@@ -44,10 +47,10 @@ export class ListPage {
       true,
       'custom-class custom-loading'
     );
-    this.valueGlobal.getPacientesBySucursalAndType(this.idSucursal, tipoPaciente).then( () => {
-      console.log(this.valueGlobal.pacientes);
-      }
-    )
+    this.valueGlobal.getPacientesBySucursalAndType(this.idSucursal, tipoPaciente)
+      .then(() => this.navCtrl.push(PacientesPage))
+      .catch(err => console.error(err));
+    
   }
 
 }
