@@ -41,11 +41,11 @@ export class LoginPage {
   }
 
   ngOnInit() {
-    this.orientationPersonalized.platformReady();
+    this.orientationPersonalized.orientationPortrait();
   }
 
   ionViewDidEnter() {
-    this.orientationPersonalized.platformReady();
+    this.orientationPersonalized.orientationPortrait();
   }
 
   ingresar() {
@@ -87,3 +87,5 @@ export class LoginPage {
     this.menuCtrl.enable(false);
   }
 }
+
+

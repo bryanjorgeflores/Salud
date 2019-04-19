@@ -11,11 +11,20 @@ export class OrientationPersonalized {
 
   ) { }
 
-  platformReady = () => {
+  orientationPortrait = () => {
     this.platform.ready()
       .then(() => {
         this.screenOrientation.unlock();
         this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+      })
+      .catch(err => console.error(err));
+  }
+
+  orientationLandscape = () => {
+    this.platform.ready()
+      .then(() => {
+        this.screenOrientation.unlock();
+        this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
       })
       .catch(err => console.error(err));
   }

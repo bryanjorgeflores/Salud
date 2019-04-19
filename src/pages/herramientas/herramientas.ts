@@ -60,25 +60,25 @@ export class HerramientasPage {
     let tarjeta1: Tarjeta ={
       titulo: 'Primer Archivo',
       subtitulo: 'Descripcion',
-      src:'assets/imgs/img.png',
+      src:'assets/imgs_gcm/img.png',
       estado:true
     };
     let tarjeta2: Tarjeta ={
       titulo: 'Segundo Archivo',
       subtitulo: 'Descripcion',
-      src:'assets/imgs/img.png',
+      src:'assets/imgs_gcm/img.png',
       estado:true
     };
     let tarjeta3: Tarjeta ={
       titulo: 'Tercer Archivo',
       subtitulo: 'Descripcion',
-      src:'assets/imgs/img.png',
+      src:'assets/imgs_gcm/img.png',
       estado:true
     };
     let tarjeta4: Tarjeta ={
       titulo: 'Cuarto Archivo',
       subtitulo: 'Descripcion',
-      src:'assets/imgs/img.png',
+      src:'assets/imgs_gcm/img.png',
       estado:true
     };
     

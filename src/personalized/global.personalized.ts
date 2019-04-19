@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Paciente } from "../interfaces/models/paciente.model";
 import { Cita } from "../interfaces/models/cita.model";
-import { NavController } from "ionic-angular";
 import { AlertPersonalized } from "./alert.personalized";
 import { GetDataService } from "../services/getdata.service";
 import { FilterData } from "./filter.data.personalized";
+import { NavController } from "ionic-angular";
 
 @Injectable()
 
@@ -34,14 +34,12 @@ export class ValueGlobal {
   constructor(
     public alertPersonalized: AlertPersonalized,
     public getDataService: GetDataService,
-    private navCtrl: NavController,
     public filterData: FilterData,
-    
   ) { }
 
 
 
-  getPacientesBySucursalAndType(idSucursal: string, tipo: string) {    
+  async getPacientesBySucursalAndType(idSucursal: string, tipo: string) {    
     this.getDataService
       .getPacientesBySucursalAndType(idSucursal, tipo).subscribe(
         (pacientes: Array<any>) => {
@@ -57,7 +55,6 @@ export class ValueGlobal {
           console.error(error);
         },
         () => {
-          // this.navCtrl.setRoot('/tabspacientes/espera')
         }
     );
   }
@@ -82,7 +79,6 @@ export class ValueGlobal {
         this.citasAnteriores = this.filterData.getCitasAnteriores(citas);
         this.citasPosteriores = this.filterData.getCitasPosteriores(citas);
 
-        // this.navCtrl.setRoot('/tabscitas/proximo');
       }
     );
     

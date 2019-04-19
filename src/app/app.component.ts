@@ -13,6 +13,7 @@ import { HerramientasPage } from '../pages/herramientas/herramientas';
 import { CitasPage } from '../pages/citas/citas';
 import { VacunasPage } from '../pages/vacunas/vacunas';
 import { LoginPage } from '../pages/login/login';
+import { ListPage } from '../pages/list/list';
 
 @Component({
   templateUrl: 'app.html'
@@ -20,7 +21,7 @@ import { LoginPage } from '../pages/login/login';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = ListadoPage;
+  rootPage: any = ListPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -33,6 +34,7 @@ export class MyApp {
       { title: 'Login', component: HomePage },
       { title: 'Login', component: LoginPage },
       { title: 'Listado', component: ListadoPage },
+      { title: 'Home', component: ListPage }, 
       { title: 'Perfil', component: DatosPage },
       { title: 'Notificaciones', component: NotificacionPage },
       { title: 'Registrar Paciente', component: RegistroPacientePage },

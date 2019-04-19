@@ -81,6 +81,7 @@ import { LoginPage } from '../pages/login/login';
     HttpClientModule,
     IonicImageViewerModule,
     IonicModule.forRoot(MyApp),
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [

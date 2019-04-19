@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/';
+import { OrientationPersonalized } from '../../personalized/orientation.personalized';
 
 /**
  * Generated class for the VacunasPage page.
@@ -17,9 +18,12 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/';
 export class VacunasPage {
 
   constructor(
-    public screenOrientation:ScreenOrientation,
-    public navCtrl: NavController, public navParams: NavParams,
-    public platform:Platform) {
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private orientationPersonalized: OrientationPersonalized,
+    private screenOrientation: ScreenOrientation,
+
+    ) {
   }
 
   ionViewDidLoad() {
@@ -28,11 +32,7 @@ export class VacunasPage {
   }
 
   ngOnInit() {
-    this.platform.ready().then(() => {
-      this.screenOrientation.unlock();
-      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
-      console.log("Estoy de costado");
-  });
+    this.orientationPersonalized.orientationLandscape();
   }
 
 
