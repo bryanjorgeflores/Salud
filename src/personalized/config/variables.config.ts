@@ -1,5 +1,5 @@
-const URL = "http://localhost:3000/api";
-// const URL = "http://gestcitasapi.herokuapp.com/api";
+//const URL = "http://localhost:3000/api";
+const URL = "http://apisalud.herokuapp.com/api";
 
 let requisitosPassword = (password: string, passwordRep: string) => {
   return [
