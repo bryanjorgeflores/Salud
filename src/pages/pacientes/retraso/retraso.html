@@ -17,5 +17,36 @@
 
 
 <ion-content padding>
+  <ion-list>
+    <ion-item-sliding
+      class="item_paciente"
+      *ngFor="let paciente of pacientesRetrasoOrden; let index = index;">
 
+      <ion-item
+        color="danger"
+        (click)="goToCitas(paciente)">
+
+        <ion-label text-wrap> 
+          <p ion-text text-left tappable color="light_contrast"> 
+            {{paciente.nombres}}          
+          </p>
+          <p ion-text text-right tappable color="warning">
+            {{(fechaHoy - paciente.citaproxima)/86400000 | number:'1.0-0'}} días de retraso
+          </p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-options side="right">
+        <button ion-button color="secondary">
+          <a class="link_llamar" href="tel:{{paciente.celular}}">
+            <ion-icon name="call"></ion-icon>
+            <br/>
+            Llamar
+          </a>
+        </button>
+      </ion-item-options>
+
+    </ion-item-sliding>
+
+  </ion-list>
 </ion-content>

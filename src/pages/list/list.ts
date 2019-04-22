@@ -8,7 +8,8 @@ import { AlertPersonalized } from '../../personalized/alert.personalized';
 import { OrientationPersonalized } from '../../personalized/orientation.personalized';
 import { ValueGlobal } from '../../personalized/global.personalized';
 import { PacientesPage } from '../pacientes/pacientes';
-
+import { Paciente } from '../../interfaces/models/paciente.model';
+import { FilterData } from '../../personalized/filter.data.personalized';
 
 @Component({
   selector: 'page-list',
@@ -24,6 +25,7 @@ export class ListPage {
     public getDataService: GetDataService,
     public orientationPersonalized: OrientationPersonalized,
     public valueGlobal: ValueGlobal,
+    public filterData: FilterData,
 
     ) { }
   
@@ -47,9 +49,10 @@ export class ListPage {
       true,
       'custom-class custom-loading'
     );
-    this.valueGlobal.getPacientesBySucursalAndType(this.idSucursal, tipoPaciente)
-      .then(() => this.navCtrl.push(PacientesPage))
-      .catch(err => console.error(err));
+    this.getDataService.getPacientesBySucursalAndType(this.idSucursal, tipoPaciente).subscribe((pacientes: Array<Paciente>) => {
+      this.valueGlobal.setPacientesGlobalWithFilters(pacientes);
+      this.navCtrl.setRoot(PacientesPage);
+    })
     
   }
 

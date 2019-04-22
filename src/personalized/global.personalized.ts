@@ -38,48 +38,57 @@ export class ValueGlobal {
 
 
 
-  async getPacientesBySucursalAndType(idSucursal: string, tipo: string) {    
+  async getPacientesBySucursalAndType(idSucursal: string, tipo: string) {
     this.getDataService
       .getPacientesBySucursalAndType(idSucursal, tipo).subscribe(
         (pacientes: Array<Paciente>) => {
           let idDoctor = localStorage.getItem('iddoctor');
 
           this.pacientes = pacientes;
+          console.log(pacientes);
           this.pacientesPersonalOrden = this.filterData.getPacientesPersonalOrden(pacientes, idDoctor);
+          console.log(this.pacientesPersonalOrden);
           this.pacientesEsperaOrden = this.filterData.getPacientesEsperaOrden(pacientes);
+          console.log(this.pacientesEsperaOrden);
           this.pacientesRetrasoOrden = this.filterData.getPacientesRetrasoOrden(pacientes);
+          console.log(this.pacientesRetrasoOrden);
         }, 
-        (error) => {
-          console.error(error);
+        (err) => {
+          console.error(err);
         },
         () => {
+          
         }
     );
   }
 
-  getCitasByPaciente(nombresPaciente: string, idPaciente: string, duracion: number) {
-    this.alertPersonalized.simpleLoading(
-      `Cargando Datos de ${nombresPaciente}`,
-      duracion
-    );
-    
+  async getCitasByPaciente(idPaciente: string) {    
     this.getDataService.getCitasByPaciente(idPaciente)
-      .subscribe((citas: Array<Cita>) => {
-        console.log('citas init');
-        console.log(citas);
-        
-        this.citas = citas;
-        console.log('this.citas init');
-        console.log(this.citas);
-        this.citaProxima = this.filterData.getCitaProxima(citas);
-        console.log('init cita proxima');
-        console.log(this.citaProxima);
-        this.citasAnteriores = this.filterData.getCitasAnteriores(citas);
-        this.citasPosteriores = this.filterData.getCitasPosteriores(citas);
+      .subscribe(
+        (citas: Array<Cita>) => { 
+          this.citas = citas;
+          this.citaProxima = this.filterData.getCitaProxima(citas);
+          this.citasAnteriores = this.filterData.getCitasAnteriores(citas);
+          this.citasPosteriores = this.filterData.getCitasPosteriores(citas);
 
-      }
+        },
+        (err) => {
+          console.error(err)
+        },
+        () => {
+
+        }
     );
     
+  }
+
+  setPacientesGlobalWithFilters(pacientes: Array<Paciente>) {
+    let idDoctor = localStorage.getItem('iddoctor');
+    this.pacientes = pacientes;
+    this.pacientesEsperaOrden = this.filterData.getPacientesEsperaOrden(pacientes);
+    this.pacientesEsperaOrden = this.filterData.getPacientesEsperaOrden(pacientes);
+    this.pacientesPersonalOrden = this.filterData.getPacientesPersonalOrden(pacientes, idDoctor);
+    this.pacientesRetrasoOrden = this.filterData.getPacientesRetrasoOrden(pacientes);
   }
   
 }

@@ -7,7 +7,6 @@ import { HomePage } from '../pages/home/home';
 import { DatosPage } from '../pages/datos/datos';
 import { ListadoPage } from '../pages/listado/listado';
 import { NotificacionPage } from '../pages/notificacion/notificacion';
-import { Page1Page } from '../pages/page1/page1';
 import { RegistroPacientePage } from '../pages/registro-paciente/registro-paciente';
 import { HerramientasPage } from '../pages/herramientas/herramientas';
 import { CitasPage } from '../pages/citas/citas';
@@ -22,7 +21,7 @@ import { PacientesPage } from '../pages/pacientes/pacientes';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = ListadoPage;
+  rootPage: any = ListPage;
 
   pages: Array<{title: string, component: any}>;
 

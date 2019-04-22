@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Paciente } from '../../../interfaces/models/paciente.model';
 import { ValueGlobal } from '../../../personalized/global.personalized';
 import { AlertPersonalized } from '../../../personalized/alert.personalized';
+import { CitasPage } from '../../citas/citas';
 
 /**
  * Generated class for the EsperaPage page.
@@ -17,12 +18,9 @@ import { AlertPersonalized } from '../../../personalized/alert.personalized';
   templateUrl: 'espera.html',
 })
 export class EsperaPage {
-  idSucursal: string = '';
   pacientesEsperaOrden: Array<Paciente>;
-  tipoPaciente: string = '';
 
   fechaHoy: number = Date.now();
-  factorDia: number = 86400000;
 
   constructor(
     public navCtrl: NavController, 
@@ -33,21 +31,29 @@ export class EsperaPage {
     ) { }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EsperaPage');
+    this.pacientesEsperaOrden = this.valueGlobal.pacientesEsperaOrden;
   }
 
-  ngOnInit() {
-    this.idSucursal = localStorage.getItem('idsucursal');
-    this.tipoPaciente = localStorage.getItem('tipopaciente');
+  ionViewDidEnter() {
+    
+  }
 
-    this.pacientesEsperaOrden = this.valueGlobal.pacientesEsperaOrden;
-    console.log(this.fechaHoy);
+
+  ngOnInit() {
+
   }
 
   goToCitas(paciente: Paciente) {
     localStorage.setItem('paciente', JSON.stringify(paciente));
 
-    this.valueGlobal.getCitasByPaciente(paciente.nombres, paciente._id, 1000);
+    this.alertPersonalized.simpleLoading(
+      `Cargando Datos de ${paciente.nombres}`,
+      1000
+    );
+
+    this.valueGlobal.getCitasByPaciente(paciente._id)
+      .then(() => this.navCtrl.setRoot(CitasPage))
+      .catch(err => console.error(err));
   }
 
 }

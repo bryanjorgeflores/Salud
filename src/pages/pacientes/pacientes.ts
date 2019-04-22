@@ -6,6 +6,10 @@ import { EsperaPage } from './espera/espera';
 import { PersonalPage } from './personal/personal';
 import { RetrasoPage } from './retraso/retraso';
 import { GeneralPage } from './general/general';
+import { ValueGlobal } from '../../personalized/global.personalized';
+import { Paciente } from '../../interfaces/models/paciente.model';
+import { AlertPersonalized } from '../../personalized/alert.personalized';
+import { CitasPage } from '../citas/citas';
 
 /**
  * Generated class for the PacientesPage page.
@@ -25,18 +29,13 @@ export class PacientesPage {
   espera: Page =  EsperaPage;
   retraso: Page = RetrasoPage;
   general: Page = GeneralPage;
-
-
-
+  
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    
     ) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PacientesPage');
   }
-
 }
