@@ -7,13 +7,6 @@ import { PosteriorPage } from './posterior/posterior';
 import { AnteriorPage } from './anterior/anterior';
 import { InformePage } from './informe/informe';
 
-/**
- * Generated class for the CitasPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-citas',
@@ -33,7 +26,6 @@ export class CitasPage {
     ) { }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CitasPage');
   }
 
 }

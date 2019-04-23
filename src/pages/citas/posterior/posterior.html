@@ -1,18 +1,29 @@
-<!--
-  Generated template for the PosteriorPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>posterior</ion-title>
+  <ion-navbar color="secondary">
+    <ion-title>
+      <p class="pform">Citas Futuras</p>
+    </ion-title>
   </ion-navbar>
-
+    
 </ion-header>
 
-
 <ion-content padding>
-
+  <ion-list>
+    <ion-item *ngFor="let cita of citasPosteriores; let i = index;">
+      <ion-label>
+        <p color="light">
+          <span ion-text text-left tappable>
+            {{cita.numero}}
+          </span>
+          <span ion-text text-right tappable>
+            dentro de {{(cita.fechaprogramada - fechaHoy)/86400000 | number: '1.0-0'}} dias
+          </span>
+        </p>
+        <p color="dark">
+          {{cita.fechaprogramada | date}}
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

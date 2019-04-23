@@ -45,13 +45,9 @@ export class ValueGlobal {
           let idDoctor = localStorage.getItem('iddoctor');
 
           this.pacientes = pacientes;
-          console.log(pacientes);
           this.pacientesPersonalOrden = this.filterData.getPacientesPersonalOrden(pacientes, idDoctor);
-          console.log(this.pacientesPersonalOrden);
           this.pacientesEsperaOrden = this.filterData.getPacientesEsperaOrden(pacientes);
-          console.log(this.pacientesEsperaOrden);
           this.pacientesRetrasoOrden = this.filterData.getPacientesRetrasoOrden(pacientes);
-          console.log(this.pacientesRetrasoOrden);
         }, 
         (err) => {
           console.error(err);
@@ -82,13 +78,20 @@ export class ValueGlobal {
     
   }
 
-  setPacientesGlobalWithFilters(pacientes: Array<Paciente>) {
+  setPacientesGlobalWithFilters(pacientes: Array<Paciente>): void {
     let idDoctor = localStorage.getItem('iddoctor');
     this.pacientes = pacientes;
     this.pacientesEsperaOrden = this.filterData.getPacientesEsperaOrden(pacientes);
     this.pacientesEsperaOrden = this.filterData.getPacientesEsperaOrden(pacientes);
     this.pacientesPersonalOrden = this.filterData.getPacientesPersonalOrden(pacientes, idDoctor);
     this.pacientesRetrasoOrden = this.filterData.getPacientesRetrasoOrden(pacientes);
+  }
+
+  setCitasGlobalByPaciente(citas: Array<Cita>) {
+    this.citas = citas;
+    this.citaProxima = this.filterData.getCitaProxima(citas);
+    this.citasAnteriores = this.filterData.getCitasAnteriores(citas);
+    this.citasPosteriores = this.filterData.getCitasPosteriores(citas);
   }
   
 }

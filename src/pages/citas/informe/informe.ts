@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Cita } from '../../../interfaces/models/cita.model';
+import { OrientationPersonalized } from '../../../personalized/orientation.personalized';
+import { ValueGlobal } from '../../../personalized/global.personalized';
 
 /**
  * Generated class for the InformePage page.
@@ -14,14 +17,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'informe.html',
 })
 export class InformePage {
+  citas: Array<Cita>;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
+    public valueGlobal: ValueGlobal,
+    private orientationPersonalized: OrientationPersonalized,
+
     ) { }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad InformePage');
+  }
+
+  ngOnInit() {
+    this.orientationPersonalized.orientationLandscape();
+    this.citas = this.valueGlobal.citas;
   }
 
 }

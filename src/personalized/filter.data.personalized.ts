@@ -18,7 +18,7 @@ export class FilterData {
 
   
   // getPacientes
-  getPacientesPersonal(pacientes: Array<Paciente>, idDoctor: string) {
+  getPacientesPersonal(pacientes: Array<Paciente>, idDoctor: string): Array<Paciente> {
     let pacientesPersonal = pacientes.filter((paciente: Paciente) => {
 
       return paciente.ultimodoctor == idDoctor;
@@ -26,7 +26,7 @@ export class FilterData {
 
     return pacientesPersonal;
   }
-  getPacientesEspera(pacientes: Array<Paciente>) {
+  getPacientesEspera(pacientes: Array<Paciente>): Array<Paciente> {
     let fechaHoy: number = Date.now();
 
     let pacientesEspera = pacientes.filter((paciente: Paciente) => {
@@ -35,7 +35,7 @@ export class FilterData {
 
     return pacientesEspera;
   }
-  getPacientesRetraso(pacientes: Array<Paciente>) {
+  getPacientesRetraso(pacientes: Array<Paciente>): Array<Paciente> {
     let fechaHoy: number = Date.now();
 
     let pacientesRetraso = pacientes.filter((paciente: Paciente) => {
@@ -46,14 +46,14 @@ export class FilterData {
   }
 
   // Ordenador
-  ordenarPacientesCreciente(pacientes: Array<Paciente>, propiedad: string) {
+  ordenarPacientesCreciente(pacientes: Array<Paciente>, propiedad: string): Array<Paciente> {
     pacientes.sort((pacienteActual: Paciente, pacienteEntrante: Paciente) => {
       return pacienteActual[propiedad] - pacienteEntrante[propiedad];
     });
     return pacientes;
   }
 
-  ordenarPacientesDecreciente(pacientes: Array<Paciente>, propiedad: string) {
+  ordenarPacientesDecreciente(pacientes: Array<Paciente>, propiedad: string): Array<Paciente> {
     pacientes.sort((pacienteActual: Paciente, pacienteEntrante: Paciente) => {
       return pacienteEntrante[propiedad] - pacienteActual[propiedad];
     });
@@ -61,7 +61,7 @@ export class FilterData {
   }
 
   // Pacientes Orden
-  getPacientesPersonalOrden(pacientes: Array<Paciente>, idDoctor: string) {
+  getPacientesPersonalOrden(pacientes: Array<Paciente>, idDoctor: string): Array<Paciente> {
     let pacientesPersonal = this.getPacientesPersonal(pacientes, idDoctor);
 
     this.ordenarPacientesCreciente(pacientesPersonal, 'citaproxima');
@@ -69,7 +69,7 @@ export class FilterData {
     return pacientesPersonal;
   }
 
-  getPacientesEsperaOrden(pacientes: Array<Paciente>) {
+  getPacientesEsperaOrden(pacientes: Array<Paciente>): Array<Paciente> {
     let pacientesEspera = this.getPacientesEspera(pacientes);
 
     this.ordenarPacientesCreciente(pacientesEspera, 'citaproxima');
@@ -77,7 +77,7 @@ export class FilterData {
     return pacientesEspera;
   }
 
-  getPacientesRetrasoOrden(pacientes: Array<Paciente>) {
+  getPacientesRetrasoOrden(pacientes: Array<Paciente>): Array<Paciente> {
     let pacientesRetraso = this.getPacientesRetraso(pacientes);
 
     this.ordenarPacientesDecreciente(pacientesRetraso, 'citaproxima');
@@ -87,25 +87,10 @@ export class FilterData {
 
 
   //citas
-  getCitaProxima(citas: Array<Cita>): Cita {
+  getCitaProxima(citas: Array<Cita>) {
     let fechaHoy = Date.now();
 
-    let citaProxima: Cita = {
-      idpaciente: '',
-      numero: 0,
-      tratamiento: '',
-      descripcion: '',
-      estado: false,
-      fechaprogramada: 0,
-      fechaejecutada: 0,
-      recurrencia: 0,
-      tipocita: '',
-      doctor: '',
-      sucursal: ''
-    };
-    console.log(citaProxima);
-
-    citaProxima = citas.find((cita: Cita, index: number) => {
+    let citaProxima: Cita = citas.find((cita: Cita, index: number) => {
       localStorage.setItem('indexcitaproxima', index.toString());
       
       let diasDiferenciaCita = cita.fechaprogramada - fechaHoy;
@@ -128,7 +113,7 @@ export class FilterData {
         sucursal: ''
       };
     }
-
+    console.log(citaProxima);
     return citaProxima;
   }
 

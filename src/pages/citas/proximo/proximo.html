@@ -1,18 +1,105 @@
-<!--
-  Generated template for the ProximoPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>proximo</ion-title>
+  <ion-navbar color="secondary">
+    <ion-title>
+      <p class="pform">Citas Actual</p>
+    </ion-title>
   </ion-navbar>
 
 </ion-header>
 
+<ion-content padding="3px">
+  <ion-item color="warning" *ngIf="citaProxima.fechaprogramada != 0">
+    <ion-label>
+      <p color="dark">
+        <span ion-text text-left tappable>
+          Cita {{citaProxima.numero}}
+        </span>
+        <span ion-text text-right tappable>
+          quedan {{(citaProxima.fechaprogramada - fechaHoy)/86400000 | number: '1.0-0'}} días
+        </span>
+      </p>
+      <p color="dark" ion-text tappable>
+        {{citaProxima.fechaprogramada | date}}
+      </p>
+    </ion-label>
+  </ion-item>
 
-<ion-content padding>
+  <ion-grid class="nombre">
+    <ion-row>
+      <ion-col col-2>
+        <img 
+          class="ion-img" 
+          src="assets/imgs_gcm/userchk.png" 
+          alt="Icono de Usuario" />
+      </ion-col>
+      <ion-col col-16>
+        <label>Paciente:</label>
+        <br/>
+        <label>{{paciente.nombres}}</label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="nombre">
+    <ion-row>
+      <ion-col col-2>
+        <img 
+          class="ion-img"
+          src="assets/imgs_gcm/med.png" 
+          alt="Icono Médico" />
+      </ion-col>
+      <ion-col col-16>
+        <label>Encargado:</label>
+        <br>
+        <label>{{doctor.nombres}}</label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="nombre">
+    <ion-row>
+      <ion-col col-2>
+        <img 
+          class="ion-img" 
+          src="assets/imgs_gcm/vaccine.png" 
+          alt="Icono Tratamiento" />
+      </ion-col>
+      <ion-col col-16>
+        <label for="tratamiento">Tratamiento:</label>
+        <ion-input 
+          type="text" 
+          id="tratamiento"
+          placeholder="Ingrese Tratamiento"
+          [(ngModel)]="citaProxima.tratamiento">
+        </ion-input>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="nombre">
+    <ion-row>
+      <ion-col col-2>
+        <img 
+          class="ion-img"
+          src="assets/imgs_gcm/description.png" 
+          alt="Icono Tratamiento" />
+      </ion-col>
+      <ion-col col-16>
+        <label for="descripcion">Descripción (Opcional):</label>
+        <ion-input 
+          id="descripcion" 
+          placeholder="Descripción de la Cita"
+          [(ngModel)]="citaProxima.descripcion">
+        </ion-input>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div padding *ngIf="citaProxima.fechaprogramada != 0">
+    <button 
+      ion-button 
+      block
+      color="secondary" 
+      (click)="registrarCita()"
+      >REGISTRAR CITA</button>
+  </div>
+
 
 </ion-content>

@@ -6,10 +6,10 @@ import { EsperaPage } from './espera/espera';
 import { PersonalPage } from './personal/personal';
 import { RetrasoPage } from './retraso/retraso';
 import { GeneralPage } from './general/general';
+
 import { ValueGlobal } from '../../personalized/global.personalized';
-import { Paciente } from '../../interfaces/models/paciente.model';
-import { AlertPersonalized } from '../../personalized/alert.personalized';
-import { CitasPage } from '../citas/citas';
+import { OrientationPersonalized } from '../../personalized/orientation.personalized';
+
 
 /**
  * Generated class for the PacientesPage page.
@@ -30,12 +30,28 @@ export class PacientesPage {
   retraso: Page = RetrasoPage;
   general: Page = GeneralPage;
   
+  countPacientesEspera: number = 0;
+  countPacientesRetraso: number = 0;
+  countPacientesPersonal: number = 0;
+  countPacientesGeneral: number = 0;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
+    public valueGlobal: ValueGlobal,
+    private orientationPersonalized: OrientationPersonalized,
+
     ) {
   }
 
   ionViewDidLoad() {
+    this.countPacientesEspera = this.valueGlobal.pacientesEsperaOrden.length;
+    this.countPacientesRetraso = this.valueGlobal.pacientesRetrasoOrden.length;
+    this.countPacientesPersonal = this.valueGlobal.pacientesPersonalOrden.length;
+    this.countPacientesGeneral = this.valueGlobal.pacientes.length;
+  }
+
+  ngOnInit() {
+    this.orientationPersonalized.orientationPortrait();
   }
 }

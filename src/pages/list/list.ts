@@ -40,7 +40,7 @@ export class ListPage {
     this.idSucursal = localStorage.getItem('idsucursal');
   }
 
-  goToPacientes(tipoPaciente: string) {
+  goToPacientes(tipoPaciente: string): void {
     localStorage.setItem('tipopaciente', tipoPaciente);
     this.alertPersonalized.customLoading(
       'crescent',
@@ -49,10 +49,16 @@ export class ListPage {
       true,
       'custom-class custom-loading'
     );
-    this.getDataService.getPacientesBySucursalAndType(this.idSucursal, tipoPaciente).subscribe((pacientes: Array<Paciente>) => {
-      this.valueGlobal.setPacientesGlobalWithFilters(pacientes);
-      this.navCtrl.setRoot(PacientesPage);
-    })
+    this.getDataService.getPacientesBySucursalAndType(this.idSucursal, tipoPaciente)
+      .subscribe(
+        (pacientes: Array<Paciente>) => {
+          this.valueGlobal.setPacientesGlobalWithFilters(pacientes);
+          this.navCtrl.setRoot(PacientesPage);
+        },
+        (err: Error) => {
+          console.error(err);
+        }
+      );
     
   }
 

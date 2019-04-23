@@ -4,6 +4,8 @@ import { Paciente } from '../../../interfaces/models/paciente.model';
 import { AlertPersonalized } from '../../../personalized/alert.personalized';
 import { ValueGlobal } from '../../../personalized/global.personalized';
 import { CitasPage } from '../../citas/citas';
+import { GetDataService } from '../../../services/getdata.service';
+import { Cita } from '../../../interfaces/models/cita.model';
 
 /**
  * Generated class for the GeneralPage page.
@@ -18,9 +20,7 @@ import { CitasPage } from '../../citas/citas';
   templateUrl: 'general.html',
 })
 export class GeneralPage {
-  idSucursal: string = '';
   pacientes: Array<Paciente>;
-  tipoPaciente: string = '';
 
   fechaHoy: number = Date.now();
 
@@ -29,6 +29,7 @@ export class GeneralPage {
     public navParams: NavParams,
     private alertPersonalized: AlertPersonalized,
     public valueGlobal: ValueGlobal,
+    public getDataService: GetDataService,
 
     ) { }
 
@@ -39,17 +40,25 @@ export class GeneralPage {
     this.pacientes = this.valueGlobal.pacientes;
   }
 
-  goToCitas(paciente: Paciente) {
+  goToCitas(paciente: Paciente): void {
     localStorage.setItem('paciente', JSON.stringify(paciente));
 
     this.alertPersonalized.simpleLoading(
-      `Cargando Datos de ${paciente.nombres}`,
+      `Cargando datos de ${paciente.nombres}`,
       1000
     );
 
-    this.valueGlobal.getCitasByPaciente(paciente._id)
-      .then(() => this.navCtrl.setRoot(CitasPage))
-      .catch(err => console.error(err));
+    this.getDataService.getCitasByPaciente(paciente._id)
+      .subscribe(
+        (citas: Array<Cita>) => {
+          this.valueGlobal.setCitasGlobalByPaciente(citas);
+          this.navCtrl.push(CitasPage);
+        },
+        (err: Error) => {
+          console.error(err);
+        }
+      );
   }
+
 
 }

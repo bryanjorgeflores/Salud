@@ -1,18 +1,33 @@
-<!--
-  Generated template for the AnteriorPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>anterior</ion-title>
+  <ion-navbar color="secondary">
+    <ion-title>
+      <p class="pform">Citas Pasadas</p>
+    </ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-list>
+    <div *ngFor="let cita of citasAnteriores; let i = index;">
+      <ion-item color="{{(cita.estado)? 'five' : 'danger'}}">
+        <ion-label>
+          <p color="light">
+            <span ion-text text-left tappable>
+              {{cita.numero}}
+            </span>
+            <span ion-text text-right tappable>
+              hace {{(fechaHoy - cita.fechaprogramada)/86400000 | number: '1.0-0'}} días
+            </span>
+          </p>
+          <p ion-text color="warning">
+            {{cita.fechaprogramada | date}}
+          </p>
+        </ion-label>
+      </ion-item>
 
+    </div>
+  </ion-list>
 </ion-content>
