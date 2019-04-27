@@ -14,6 +14,8 @@ import { VacunasPage } from '../pages/vacunas/vacunas';
 import { LoginPage } from '../pages/login/login';
 import { ListPage } from '../pages/list/list';
 import { PacientesPage } from '../pages/pacientes/pacientes';
+import { GetDataService } from '../services/getdata.service';
+import { Sucursal } from '../interfaces/models/sucursal.model';
 
 @Component({
   templateUrl: 'app.html'
@@ -26,7 +28,11 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
 
   constructor(
-    public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+    public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    private getDataService: GetDataService,
+    ) {
     this.initializeApp();
     // used for an example of ngFor and navigation
     this.pages = [
@@ -55,6 +61,14 @@ export class MyApp {
       this.statusBar.overlaysWebView(true);
       this.splashScreen.hide();
     });
+    this.getDataService.getSucursales()
+      .subscribe(
+        () => {
+        },
+        (err: Error) => {
+          console.error(err);
+        }
+      );
   }
 
   openPage(page) {

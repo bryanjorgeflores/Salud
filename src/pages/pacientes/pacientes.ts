@@ -9,6 +9,7 @@ import { GeneralPage } from './general/general';
 
 import { ValueGlobal } from '../../personalized/global.personalized';
 import { OrientationPersonalized } from '../../personalized/orientation.personalized';
+import { RegistroPacientePage } from '../registro-paciente/registro-paciente';
 
 
 /**
@@ -53,5 +54,9 @@ export class PacientesPage {
 
   ngOnInit() {
     this.orientationPersonalized.orientationPortrait();
+  }
+
+  goToRegistroPaciente(): any {
+    this.navCtrl.push(RegistroPacientePage);
   }
 }

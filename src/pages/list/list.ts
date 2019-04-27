@@ -10,6 +10,8 @@ import { ValueGlobal } from '../../personalized/global.personalized';
 import { PacientesPage } from '../pacientes/pacientes';
 import { Paciente } from '../../interfaces/models/paciente.model';
 import { FilterData } from '../../personalized/filter.data.personalized';
+import { RegistroPacientePage } from '../registro-paciente/registro-paciente';
+import { MenuController } from 'ionic-angular/components/app/menu-controller';
 
 @Component({
   selector: 'page-list',
@@ -21,6 +23,7 @@ export class ListPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
+    private menuCtrl: MenuController,
     private alertPersonalized: AlertPersonalized,
     public getDataService: GetDataService,
     public orientationPersonalized: OrientationPersonalized,
@@ -62,4 +65,12 @@ export class ListPage {
     
   }
 
+  goToRegistroPaciente(tipoPaciente: string): void {
+    localStorage.setItem('tipopaciente', tipoPaciente);
+    this.navCtrl.setRoot(RegistroPacientePage);
+  }
+
+  ionViewWillEnter() {
+    this.menuCtrl.enable(true);
+  }
 }

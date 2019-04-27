@@ -5,11 +5,10 @@ export interface Paciente {
   edad?: number,
   telefono: string,
   tipo: string,
-  fecharegistro?: number,
-  fechaprimaria?: number,
+  fecharegistro?: any,
+  fechaprimaria?: any,
   recurrencia?: number,
   sucursal: string,
   ultimodoctor: string,
   citaproxima?: any,
-  citas: string
 }
