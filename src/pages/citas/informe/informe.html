@@ -25,7 +25,7 @@
     <tbody>
       <tr *ngFor="let cita of citas">
         <th colspan="2">{{cita.tratamiento}}</th>
-        <th>{{cita.tratamiento}}</th>
+        <th>|</th>
         <th>
           <ion-badge 
             color="{{cita.estado? 'primary' : 'danger'}}">{{cita.estado? '✔' : '✘'}}</ion-badge>

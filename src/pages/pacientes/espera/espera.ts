@@ -6,6 +6,7 @@ import { AlertPersonalized } from '../../../personalized/alert.personalized';
 import { CitasPage } from '../../citas/citas';
 import { GetDataService } from '../../../services/getdata.service';
 import { Cita } from '../../../interfaces/models/cita.model';
+import { getCitasLocalesByTypePaciente } from '../../../filters/cita.filter';
 
 /**
  * Generated class for the EsperaPage page.
@@ -38,18 +39,22 @@ export class EsperaPage {
   }
 
   goToCitas(paciente: Paciente): void {
+    
     localStorage.setItem('paciente', JSON.stringify(paciente));
 
-    this.alertPersonalized.simpleLoading(
-      `Cargando datos de ${paciente.nombres}`,
-      1000
-    );
+    this.valueGlobal.citasLocales = getCitasLocalesByTypePaciente(paciente.tipo, +new Date(paciente.fechaprimaria));
 
     this.getDataService.getCitasByPaciente(paciente._id)
       .subscribe(
-        (citas: Array<Cita>) => {
-          this.valueGlobal.setCitasGlobalByPaciente(citas);
-          this.navCtrl.push(CitasPage);
+        (citas: any) => {
+          this.alertPersonalized.simpleLoading(
+            `Cargando datos de ${paciente.nombres}`,
+            1000
+          );
+          localStorage.setItem('idcita', citas._id);
+          localStorage.setItem('idpaciente', paciente._id);
+          this.valueGlobal.setCitasGlobal(citas.sesiones);
+          this.navCtrl.setRoot(CitasPage);
         },
         (err: Error) => {
           console.error(err);

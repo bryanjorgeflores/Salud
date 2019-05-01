@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { URL } from "../personalized/config/variables.config";
+import { Paciente } from "../interfaces/pacientes";
 
 @Injectable()
 

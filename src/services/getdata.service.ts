@@ -44,11 +44,11 @@ export class GetDataService {
   }
 
   //Citas
-  getCitas(id: string): Observable<Array<Cita>> {
-    return this.http.get<Array<Cita>>(`${URL}/citas/${id}`);
+  getCitas(id: string): Observable<Array<any>> {
+    return this.http.get<Array<any>>(`${URL}/citas/${id}`);
   }
-  getCitasByPaciente(idPaciente: string): Observable<Array<Cita>> {
-    return this.http.get<Array<Cita>>(`${URL}/paciente/citas/${idPaciente}`);
+  getCitasByPaciente(idPaciente: string): Observable<Array<any>> {
+    return this.http.get<Array<any>>(`${URL}/paciente/citas/${idPaciente}`);
   }
   getCita(id: string, index: number): Observable<Cita> {
     return this.http.get<Cita>(`${URL}/cita/${id}/${index}`);

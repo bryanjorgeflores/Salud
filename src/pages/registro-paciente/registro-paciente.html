@@ -106,7 +106,8 @@
     <ion-label stacked color="dark">Fecha Inicial</ion-label>
     <ion-input 
       type="date"
-      [(ngModel)]="paciente.fechaprimaria">
+      [(ngModel)]="paciente.fechaprimaria"
+      (ngModelChange)="calcularCitaProxima()">
     </ion-input>
   </ion-item>
 
@@ -118,10 +119,7 @@
        width="32px" />
     </p>
     <ion-label stacked color="dark">Cita Próxima</ion-label>
-    <ion-input 
-      type="datetime-local"
-      [(ngModel)]="paciente.citaproxima">
-    </ion-input>
+    <ion-label>{{paciente.citaproxima | date: 'dd/MM/yyyy'}}</ion-label>
   </ion-item>
 
   <ion-item>

@@ -4,6 +4,7 @@ import { Cita } from "../interfaces/models/cita.model";
 import { AlertPersonalized } from "./alert.personalized";
 import { GetDataService } from "../services/getdata.service";
 import { FilterData } from "./filter.data.personalized";
+import { getCitaProxima, getAllCitas, getCitasAnteriores, getCitasPosteriores } from "../filters/cita.filter";
 
 @Injectable()
 
@@ -25,6 +26,7 @@ export class ValueGlobal {
   public pacientesRetrasoOrden: Array<Paciente>;
 
   public citas: Array<Cita>;
+  public citasLocales: Array<Cita>;
   public citaProxima: Cita;
   public citasPosteriores: Array<Cita>;
   public citasAnteriores: Array<Cita>;
@@ -92,6 +94,17 @@ export class ValueGlobal {
     this.citaProxima = this.filterData.getCitaProxima(citas);
     this.citasAnteriores = this.filterData.getCitasAnteriores(citas);
     this.citasPosteriores = this.filterData.getCitasPosteriores(citas);
+  }
+
+  setCitasGlobal(citasRegistradas: Array<Cita>) {
+    // this.citaProxima = getCitaProxima(citasRegistradas.length, this.citasLocales);
+
+    this.citas = getAllCitas(this.citasLocales, citasRegistradas);
+
+    this.citaProxima = getCitaProxima(citasRegistradas, this.citasLocales);
+    
+    this.citasAnteriores = getCitasAnteriores(this.citas);
+    this.citasPosteriores = getCitasPosteriores(this.citas);
   }
   
 }

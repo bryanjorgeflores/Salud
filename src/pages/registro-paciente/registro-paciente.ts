@@ -1,16 +1,21 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { CitasPage } from '../citas/citas';
+
 import { Paciente } from '../../interfaces/models/paciente.model';
 import { Cita } from '../../interfaces/models/cita.model';
 
+import { GetDataService } from '../../services/getdata.service';
+import { PostDataService } from '../../services/postdata.service';
+
 import { ValueGlobal } from '../../personalized/global.personalized';
 import { AlertPersonalized } from '../../personalized/alert.personalized';
-
-import { GetDataService } from '../../services/getdata.service';
-import { CitasPage } from '../citas/citas';
-import { PostDataService } from '../../services/postdata.service';
 import { OrientationPersonalized } from '../../personalized/orientation.personalized';
+import { passDateForInput } from '../../personalized/config/fecha.config';
+import { getCitasLocalesByTypePaciente } from '../../filters/cita.filter';
+
+
 
 
 @IonicPage()
@@ -23,8 +28,9 @@ export class RegistroPacientePage {
   nombresPaciente: string = '';
   dniPaciente: string = '';
   telefonoPaciente: string = '';
-  tipoPaciente: string = '';
   fechaHoy: number = Date.now();
+  citasInput: any;
+
   
   paciente: Paciente = {
     dni: '',
@@ -32,19 +38,21 @@ export class RegistroPacientePage {
     edad: 0,
     telefono: '',
     tipo: localStorage.getItem('tipopaciente'),
-    fecharegistro: new Date(this.fechaHoy).toISOString().slice(0, -8),
+    fecharegistro: passDateForInput(this.fechaHoy),
     fechaprimaria: '',
+    estado: false,
     recurrencia: 1,
     sucursal: localStorage.getItem('idsucursal'),
     ultimodoctor: localStorage.getItem('iddoctor'),
-    citaproxima: new Date(this.fechaHoy + 2592e6).toISOString().slice(0, -8),
+    citaproxima: passDateForInput(this.fechaHoy),
   };
-  
   
   selectOptions = {
     title: 'Tipo de Trato',
     subTitle: 'Seleccione el Tipo de Dato'
   };
+
+  habilitadoRegistro: boolean = false;
 
   constructor(
     public navCtrl: NavController, 
@@ -63,7 +71,6 @@ export class RegistroPacientePage {
 
   ngOnInit() {
     this.orientationPersonalized.orientationPortrait();
-    this.tipoPaciente = localStorage.getItem('tipopaciente');
 
   }
   
@@ -88,7 +95,6 @@ export class RegistroPacientePage {
       2000
     );
   }
-
 
   getPaciente(): void {
     this.presentLoading();
@@ -115,7 +121,34 @@ export class RegistroPacientePage {
       );
   }
 
-  registrarPaciente() {
+  calcularCitaProxima(): void {
+    this.valueGlobal.citasLocales = getCitasLocalesByTypePaciente(this.paciente.tipo, +new Date(this.paciente.fechaprimaria));
+  
+    let citaProxima: Cita = this.valueGlobal.citasLocales.find(
+      (cita: Cita, index: number) => {
+        localStorage.setItem('indexcitaproxima', index.toString());
+        
+        return cita.fechaprogramada - this.fechaHoy >= -1728e5;
+      }
+    );
+
+    if (!citaProxima) {
+      this.alertPersonalized.alertAccept(
+        'Ninguna Cita',
+        'No existe ninguna cita para ese paciente',
+        ['Aceptar']
+      );
+
+      this.habilitadoRegistro = false;
+
+      return;
+    }
+
+    this.paciente.citaproxima = citaProxima.fechaprogramada;
+    this.habilitadoRegistro = true;
+  }
+
+  registrarPaciente(): void {
     this.loadingCitas(this.paciente.nombres);
 
     this.paciente.fechaprimaria = +new Date(this.paciente.fechaprimaria);
@@ -128,16 +161,9 @@ export class RegistroPacientePage {
       .subscribe(
         (idPaciente: string) => {
           localStorage.setItem('idpaciente', idPaciente);
-          this.getDataService.getCitasByPaciente(idPaciente)
-            .subscribe(
-              (citas: Array<Cita>) => {
-                this.loadingCitas(this.paciente.nombres);
-                this.valueGlobal.setCitasGlobalByPaciente(citas);
-
-                this.navCtrl.push(CitasPage);
-              }
-            );
-        }
+          this.valueGlobal.setCitasGlobal([]);
+          this.navCtrl.push(CitasPage);
+        }    
       );
   }
 

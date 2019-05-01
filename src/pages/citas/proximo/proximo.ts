@@ -5,6 +5,8 @@ import { OrientationPersonalized } from '../../../personalized/orientation.perso
 import { Cita } from '../../../interfaces/models/cita.model';
 import { Paciente } from '../../../interfaces/models/paciente.model';
 import { Doctor } from '../../../interfaces/models/doctor.model';
+import { PutDataService } from '../../../services/putdata.service';
+import { PacientesPage } from '../../pacientes/pacientes';
 
 /**
  * Generated class for the ProximoPage page.
@@ -23,13 +25,22 @@ export class ProximoPage {
   paciente: Paciente;
   doctor: Doctor;
 
+  idCita: string = '';
+  indexCitaProxima: string = '';
   fechaHoy: number = Date.now();
+  diferenciaTiempo: number = 0;
+  estadoTiempo: string = '';
+  colorCitaProxima: string = '';
+  factorCitaProxima: number = 0;
+
+  datosPacienteCita: any;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public valueGlobal: ValueGlobal,
     private orientationPersonalized: OrientationPersonalized,
+    private putDataService: PutDataService,
 
     ) { }
 
@@ -42,16 +53,57 @@ export class ProximoPage {
     this.paciente = JSON.parse(localStorage.getItem('paciente'));
     this.doctor = JSON.parse(localStorage.getItem('doctor'));
     this.citaProxima = this.valueGlobal.citaProxima;
+    this.indexCitaProxima = localStorage.getItem('indexcitaproxima');
+    this.idCita = localStorage.getItem('idcita');
+
+    console.log(this.indexCitaProxima);
+
+    this.diferenciaTiempo = this.citaProxima.fechaprogramada - this.fechaHoy;
+    
+    if (this.diferenciaTiempo > 0) {
+      this.estadoTiempo = 'queda';
+      this.colorCitaProxima = 'warning';
+      this.factorCitaProxima = 86400000;
+      
+    } else {
+      this.estadoTiempo = 'hace';
+      this.colorCitaProxima = 'danger';
+      this.factorCitaProxima = -86400000;
+    }
+
   }
 
   registrarCita() {
-    
-    let indexCitaProxima = +localStorage.getItem('indexcitaproxima');
-    console.log(indexCitaProxima);
-    
-    if (indexCitaProxima < this.valueGlobal.citas.length - 1) {
-      let fechaProgramada = this.valueGlobal.citas[indexCitaProxima + 1].fechaprogramada;
-      console.log(fechaProgramada);
+
+    this.datosPacienteCita = {
+      numero: this.citaProxima.numero,
+      tratamiento: this.citaProxima.tratamiento,
+      descripcion: this.citaProxima.descripcion,
+      fechaprogramada: this.citaProxima.fechaprogramada,
+      fechaejecutada: Date.now(),
+      tipocita: 'normal',
+      doctor: this.doctor._id,
+      sucursal: localStorage.getItem('idsucursal'),
     }
+
+    this.datosPacienteCita.estadopaciente = false;
+    this.datosPacienteCita.idpaciente = this.paciente._id;
+
+    let fechaProgramada: number = 0;
+
+    if (this.citaProxima.numero < this.valueGlobal.citas.length - 1) {
+      fechaProgramada = this.valueGlobal.citas[this.citaProxima.numero + 1].fechaprogramada;
+      console.log(fechaProgramada);
+      this.datosPacienteCita.estadopaciente = false;
+    }
+
+    this.datosPacienteCita.citaprogramada = fechaProgramada;
+
+    this.putDataService.putCita(this.idCita, this.citaProxima.numero, this.datosPacienteCita)
+      .subscribe(
+        (idpaciente: string) => this.navCtrl.setRoot(PacientesPage),
+        (err: Error) => console.error(err)
+    );
+
   }
 }

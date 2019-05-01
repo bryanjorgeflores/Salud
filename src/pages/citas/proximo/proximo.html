@@ -9,21 +9,23 @@
 </ion-header>
 
 <ion-content padding="3px">
-  <ion-item color="warning" *ngIf="citaProxima.fechaprogramada != 0">
+  <ion-item color="{{colorCitaProxima}}">
     <ion-label>
       <p color="dark">
         <span ion-text text-left tappable>
-          Cita {{citaProxima.numero}}
+          Cita {{citaProxima.numero + 1}}  |
         </span>
         <span ion-text text-right tappable>
-          quedan {{(citaProxima.fechaprogramada - fechaHoy)/86400000 | number: '1.0-0'}} días
+          {{estadoTiempo}} {{(diferenciaTiempo)/factorCitaProxima | number: '1.0-0'}} día(s).
         </span>
       </p>
-      <p color="dark" ion-text tappable>
+      <p color="dark" ion-text text-right tappable>
         {{citaProxima.fechaprogramada | date}}
       </p>
     </ion-label>
   </ion-item>
+
+  <br/>
 
   <ion-grid class="nombre">
     <ion-row>
@@ -92,7 +94,7 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <div padding *ngIf="citaProxima.fechaprogramada != 0">
+  <div padding *ngIf="diferenciaTiempo >= -1728e5 && diferenciaTiempo <= 1728e5 && citaProxima.numero != -1">
     <button 
       ion-button 
       block

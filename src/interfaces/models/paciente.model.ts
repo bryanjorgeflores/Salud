@@ -7,6 +7,7 @@ export interface Paciente {
   tipo: string,
   fecharegistro?: any,
   fechaprimaria?: any,
+  estado: boolean,
   recurrencia?: number,
   sucursal: string,
   ultimodoctor: string,
