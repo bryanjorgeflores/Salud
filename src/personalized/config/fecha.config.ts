@@ -26,6 +26,7 @@ let citasInputGestante: Array<Cita> = [
 
 
 let diasFechasInfante: Array<number> = [
+  // 0,            //fechainicial
   6048e5,       //7     
   14688e5,      //17
   23328e5,      //27
@@ -35,6 +36,7 @@ let diasFechasInfante: Array<number> = [
 ]
 
 let diasFechasGestante: Array<number> = [
+  // 0,            //fechainicial
   6912e5,       //8
   1296e6,       //15
   19872e5,      //23

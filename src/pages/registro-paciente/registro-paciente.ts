@@ -38,7 +38,7 @@ export class RegistroPacientePage {
     edad: 0,
     telefono: '',
     tipo: localStorage.getItem('tipopaciente'),
-    fecharegistro: passDateForInput(this.fechaHoy),
+    fecharegistro: passDateForInput(this.fechaHoy - 18e6),
     fechaprimaria: '',
     estado: false,
     recurrencia: 1,
@@ -122,16 +122,19 @@ export class RegistroPacientePage {
   }
 
   calcularCitaProxima(): void {
+    let citaProxima: Cita;
+
     this.valueGlobal.citasLocales = getCitasLocalesByTypePaciente(this.paciente.tipo, +new Date(this.paciente.fechaprimaria));
   
-    let citaProxima: Cita = this.valueGlobal.citasLocales.find(
+    
+    citaProxima = this.valueGlobal.citasLocales.find(
       (cita: Cita, index: number) => {
         localStorage.setItem('indexcitaproxima', index.toString());
         
         return cita.fechaprogramada - this.fechaHoy >= -1728e5;
       }
     );
-
+    
     if (!citaProxima) {
       this.alertPersonalized.alertAccept(
         'Ninguna Cita',
@@ -159,9 +162,11 @@ export class RegistroPacientePage {
 
     this.postDataService.postPaciente(this.paciente)
       .subscribe(
-        (idPaciente: string) => {
-          localStorage.setItem('idpaciente', idPaciente);
-          this.valueGlobal.setCitasGlobal([]);
+        (citas: any) => {
+          localStorage.setItem('idcita', citas._id);
+          localStorage.setItem('idpaciente', citas.paciente);
+          localStorage.setItem('numsesiones', citas.sesiones.length.toString());
+          this.valueGlobal.setCitasGlobal(citas.sesiones);
           this.navCtrl.push(CitasPage);
         }    
       );

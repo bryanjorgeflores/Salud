@@ -52,6 +52,9 @@ export class EsperaPage {
             1000
           );
           localStorage.setItem('idcita', citas._id);
+          localStorage.setItem('numsesiones', citas.sesiones.length.toString());
+          console.log(localStorage.setItem('numsesiones', citas.sesiones.length.toString()));
+          console.log(citas.sesiones);
           localStorage.setItem('idpaciente', paciente._id);
           this.valueGlobal.setCitasGlobal(citas.sesiones);
           this.navCtrl.setRoot(CitasPage);

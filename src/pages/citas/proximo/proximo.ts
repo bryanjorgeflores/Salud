@@ -7,6 +7,7 @@ import { Paciente } from '../../../interfaces/models/paciente.model';
 import { Doctor } from '../../../interfaces/models/doctor.model';
 import { PutDataService } from '../../../services/putdata.service';
 import { PacientesPage } from '../../pacientes/pacientes';
+import { HomePage } from '../../home/home';
 
 /**
  * Generated class for the ProximoPage page.
@@ -32,6 +33,7 @@ export class ProximoPage {
   estadoTiempo: string = '';
   colorCitaProxima: string = '';
   factorCitaProxima: number = 0;
+  numSesiones: number = +localStorage.getItem('numsesiones')
 
   datosPacienteCita: any;
 
@@ -53,6 +55,7 @@ export class ProximoPage {
     this.paciente = JSON.parse(localStorage.getItem('paciente'));
     this.doctor = JSON.parse(localStorage.getItem('doctor'));
     this.citaProxima = this.valueGlobal.citaProxima;
+    console.log(this.citaProxima);
     this.indexCitaProxima = localStorage.getItem('indexcitaproxima');
     this.idCita = localStorage.getItem('idcita');
 
@@ -99,7 +102,7 @@ export class ProximoPage {
 
     this.datosPacienteCita.citaprogramada = fechaProgramada;
 
-    this.putDataService.putCita(this.idCita, this.citaProxima.numero, this.datosPacienteCita)
+    this.putDataService.putCita(this.idCita, this.numSesiones, this.datosPacienteCita)
       .subscribe(
         (idpaciente: string) => this.navCtrl.setRoot(PacientesPage),
         (err: Error) => console.error(err)
