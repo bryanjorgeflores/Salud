@@ -1,4 +1,4 @@
-const URL = "http://localhost:3000/api";
+const URL = "http://10.4.11.212.:3000/api";
 // const URL = "http://gestcitasapi.herokuapp.com/api";
 // const URL = "https://apisalud.herokuapp.com/api/";
 
