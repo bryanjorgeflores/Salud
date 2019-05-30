@@ -15,6 +15,7 @@ import { LoginPage } from '../pages/login/login';
 import { ListPage } from '../pages/list/list';
 import { PacientesPage } from '../pages/pacientes/pacientes';
 import { GetDataService } from '../services/getdata.service';
+import { Doctor } from '../interfaces/models/doctor.model';
 
 @Component({
   templateUrl: 'app.html'
@@ -23,7 +24,8 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any = ListPage;
   pages: Array<{title: string, src:string, component: any}>;
-  doctor:string;
+  doctor: Doctor;
+
   constructor(
     public platform: Platform,
     public statusBar: StatusBar,
@@ -33,7 +35,7 @@ export class MyApp {
     this.initializeApp();
     // used for an example of ngFor and navigation
     this.pages = [
-      
+
       { title: 'Home', src:'assets/imgs_gcm/home-side.png', component: ListPage },
       { title: 'Notificaciones', src:'assets/imgs_gcm/notification-side.png', component: NotificacionPage },
       { title: 'Archivos', src:'assets/imgs_gcm/files-side.png', component: HerramientasPage },
@@ -46,10 +48,10 @@ export class MyApp {
 
 
     ];
-    
+
   }
 
-  initializeApp() {
+  initializeApp(): void {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -64,20 +66,19 @@ export class MyApp {
           console.error(err);
         }
       );
-    this.doctor=JSON.parse(localStorage.getItem('doctor'));
+    this.doctor = JSON.parse(localStorage.getItem('doctor'));
+
     console.log(this.doctor);
   }
 
-  openPage(page) {
+  openPage(page: any): void {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
 
-  goToDatos() {
+  goToDatos(): void {
     this.nav.setRoot(DatosPage);
   }
-  
-    
-  
+
 }
