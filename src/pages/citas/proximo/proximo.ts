@@ -79,6 +79,7 @@ export class ProximoPage {
   registrarCita() {
 
     this.datosPacienteCita = {
+      paciente: this.paciente._id,
       numero: this.citaProxima.numero,
       tratamiento: this.citaProxima.tratamiento,
       descripcion: this.citaProxima.descripcion,
