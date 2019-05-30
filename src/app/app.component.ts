@@ -15,43 +15,38 @@ import { LoginPage } from '../pages/login/login';
 import { ListPage } from '../pages/list/list';
 import { PacientesPage } from '../pages/pacientes/pacientes';
 import { GetDataService } from '../services/getdata.service';
-import { Sucursal } from '../interfaces/models/sucursal.model';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-
   rootPage: any = ListPage;
-
-  pages: Array<{title: string, component: any}>;
-
+  pages: Array<{title: string, src:string, component: any}>;
+  doctor:string;
   constructor(
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    private getDataService: GetDataService,
+    private getDataService: GetDataService
     ) {
     this.initializeApp();
     // used for an example of ngFor and navigation
     this.pages = [
       
-      { title: 'NotificacionesProbar', component: HomePage },
-      { title: 'Login', component: LoginPage },
-      { title: 'Listado', component: ListadoPage },
-      { title: 'Home', component: ListPage }, 
-      { title: 'Perfil', component: DatosPage },
-      { title: 'Notificaciones', component: NotificacionPage },
-      { title: 'Registrar Paciente', component: RegistroPacientePage },
-      { title: 'Archivos', component: HerramientasPage },
-      { title: 'Citas', component: CitasPage },
-      { title: 'Vacuna', component: VacunasPage },
-      { title: 'Pacientes', component: PacientesPage },
+      { title: 'Home', src:'assets/imgs_gcm/home-side.png', component: ListPage },
+      { title: 'Notificaciones', src:'assets/imgs_gcm/notification-side.png', component: NotificacionPage },
+      { title: 'Archivos', src:'assets/imgs_gcm/files-side.png', component: HerramientasPage },
+      { title: 'Citas', src:'home', component: CitasPage },
+      { title: 'Vacuna', src:'home', component: VacunasPage },
+      { title: 'Pacientes', src:'home', component: PacientesPage },
+      { title: 'NotificacionesProbar', src:'', component: HomePage },
+      { title: 'Login', src:'home', component: LoginPage },
+      { title: 'Listado', src:'home', component: ListadoPage },
 
 
     ];
-
+    
   }
 
   initializeApp() {
@@ -69,12 +64,18 @@ export class MyApp {
           console.error(err);
         }
       );
+    this.doctor=JSON.parse(localStorage.getItem('doctor'));
+    console.log(this.doctor);
   }
 
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  goToDatos() {
+    this.nav.setRoot(DatosPage);
   }
   
     
