@@ -21,100 +21,48 @@
   <ion-list>
     <ion-grid class="background" responsive-sm>
       <ion-row>
-        <ion-col width-33>
+        <ion-col col-6>
+          <p class="pform">INFANTES</p>
           <img 
             class="ion-img" 
             src="assets/imgs_gcm/baby.png" 
             alt="Infantes"
             (click)="goToPacientes('infante')" />
-        </ion-col>
-                
-        <ion-col width-33>
-          <p class="pform">INFANTES</p>
-          <label>
-            <button 
-              ion-button 
-              class="button-not" 
-              color="third"
-              disabled
-              >2
-            </button>
-            <button 
-              ion-button 
-              class="button-not" 
-              color="danger"
-              disabled
-              >3
-            </button>
-          </label> 
-        </ion-col>
-
-        <ion-col width-33>
           <button 
             ion-button
-            class="button-add" 
+            class="button-add"
+            color="third"
             (click)="goToRegistroPaciente('infante')" 
             >Agregar
           </button>
         </ion-col>
-      </ion-row>
-    </ion-grid>
-
-    <ion-grid class="background">
-      <ion-row>
-        <ion-col width-33>
-          <img 
-            class="ion-img" 
-            src="assets/imgs_gcm/pregnant.png"
-            alt="Gestante" 
-            (click)="goToPacientes('gestante')" />
-        </ion-col>
-          
-        <ion-col width-33>
-          <p class="pform">GESTANTE</p>
-          <label>
+        <ion-col col-6>
+            <p class="pform">GESTANTE</p>
+            <img 
+              class="ion-img" 
+              src="assets/imgs_gcm/pregnant.png" 
+              alt="Infantes"
+              (click)="goToPacientes('gestante')" />
             <button 
-              ion-button 
-              class="button-not" 
+              ion-button
+              class="button-add" 
               color="third"
-              disabled
-              >2
+              (click)="goToRegistroPaciente('gestante')" 
+              >Agregar
             </button>
-            <button 
-              ion-button 
-              class="button-not" 
-              color="danger"
-              disabled
-              >3
-            </button>
-          </label> 
-        </ion-col>
-        <ion-col width-33>
-          <button 
-            ion-button 
-            class="button-add" 
-            color="five"
-            (click)="goToRegistroPaciente('gestante')" 
-            >Agregar
-          </button>
-        </ion-col>
+          </ion-col>
       </ion-row>
     </ion-grid>
-
-
 
     <ion-grid class="background" responsive-sm>
-      <ion-row>
-        <ion-col col-4>
-          <img 
-            class="ion-img" 
-            src="assets/imgs_gcm/vaccine.png" 
-            alt="Medicamentos" />
-        </ion-col>
-          
-        <ion-col col-8>
-          <p class="pform">MEDICAMENTOS</p>
-          <label>
+        <ion-row>
+          <ion-col col-6>
+            <p class="pform">MEDICAMENTOS</p>
+            <img 
+              class="ion-img" 
+              src="assets/imgs_gcm/medicine.png" 
+              alt="Infantes"
+              (click)="goToPacientes('infante')" />
             <button 
               ion-button 
               class="button-files" 
@@ -122,23 +70,14 @@
               (click)="goToMedicamentos()" 
               >Control
             </button>
-          </label> 
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-    <ion-grid class="background" responsive-sm>
-        <ion-row>
-          <ion-col width-33>
-            <img 
-              class="ion-img" 
-              src="assets/imgs_gcm/files.png"
-              alt="Medicamento" />
           </ion-col>
-                  
-          <ion-col col-8>
-            <p class="pform">ARCHIVOS</p>
-            <label>
+          <ion-col col-6>
+              <p class="pform">ARCHIVOS</p>
+              <img 
+                class="ion-img" 
+                src="assets/imgs_gcm/files.png" 
+                alt="Infantes"
+                (click)="goToPacientes('gestante')" />
               <button 
                 ion-button 
                 class="button-files" 
@@ -146,8 +85,7 @@
                 (click)="goToArchivos()" 
                 >Ver Archivos
               </button>
-            </label> 
-          </ion-col>
+            </ion-col>
         </ion-row>
       </ion-grid>
   </ion-list>
