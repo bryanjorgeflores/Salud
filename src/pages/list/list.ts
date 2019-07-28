@@ -21,7 +21,7 @@ export class ListPage {
   idSucursal: string = '';
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     private menuCtrl: MenuController,
     private alertPersonalized: AlertPersonalized,
@@ -31,7 +31,7 @@ export class ListPage {
     public filterData: FilterData,
 
     ) { }
-  
+
   ngOnInit() {
     if (!localStorage.getItem('doctor') || !localStorage.getItem('idsucursal')) {
       this.navCtrl.setRoot(LoginPage);
@@ -62,12 +62,20 @@ export class ListPage {
           console.error(err);
         }
       );
-    
+
   }
 
   goToRegistroPaciente(tipoPaciente: string): void {
     localStorage.setItem('tipopaciente', tipoPaciente);
     this.navCtrl.setRoot(RegistroPacientePage);
+  }
+
+  goToArchivos(): void {
+
+  }
+
+  goToMedicamentos(): void {
+
   }
 
   ionViewWillEnter() {
