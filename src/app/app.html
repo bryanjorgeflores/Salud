@@ -1,19 +1,26 @@
 <ion-menu [content]="content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
   <ion-content>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
+    <ion-card color="secondary" text-center menuClose (click)="goToDatos()" class="hide-card">
+      <img src="assets/imgs_gcm/man.png" class="custom-avatar"/>
+      <h3>Hola,</h3>
+      <h2>{{doctor.nombres}}</h2>
+    </ion-card>
+    <ion-list *ngFor="let p of pages" >
+      <ion-item color="secondary" class="separation-items">
+        <ion-avatar item-start>
+          <img src="{{p.src}}">
+        </ion-avatar>
+        <button color="secondary" ion-item menuClose (click)="openPage(p)">
+          <h3>{{p.title}}</h3>
+        </button>
+      </ion-item>
     </ion-list>
   </ion-content>
 
 </ion-menu>
+
+
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
